@@ -3,7 +3,6 @@
 ## Introduction
 
 This is a backend template for Role based authentication which is created by using nodejs, epxress, jwt and mongoDB.
-It is perfect fit for creating a Customer management system using nodejs-backend or reactjs-frontend.
 
 ## Project File Structure
 
@@ -22,4 +21,4 @@ It is perfect fit for creating a Customer management system using nodejs-backend
     1. clone the repo
     2. npm install
     3. run the app-> npm start
-    4. use the postman to test the app
+    4. usepostman to test the app
