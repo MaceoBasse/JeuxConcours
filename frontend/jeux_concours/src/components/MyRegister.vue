@@ -255,7 +255,7 @@ export default {
           console.log(data.message);
           if (data.message == "User register in successfully") {
             localStorage.setItem("token", data.user["token"]);
-            this.$router.push("/");
+            this.$router.push("/game");
           } else {
             this.error = data.message;
           }
