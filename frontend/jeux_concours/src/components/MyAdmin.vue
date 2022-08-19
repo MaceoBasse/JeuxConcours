@@ -9,16 +9,15 @@
               <div
                 class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden"
               >
-                <div class="px-3 pt-8 pb-10 text-center relative z-10">
+                <div class="px-3 pt-8 pb-5 text-center relative z-10">
                   <h4 class="text-sm uppercase text-gray-500 leading-tight">
                     Users
                   </h4>
                   <h3
                     class="text-3xl text-gray-700 font-semibold leading-tight my-3"
                   >
-                    3,682
+                    {{ nb_users }}
                   </h3>
-                  <p class="text-xs text-green-500 leading-tight">▲ 57.1%</p>
                 </div>
               </div>
             </div>
@@ -28,7 +27,7 @@
               <div
                 class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden"
               >
-                <div class="px-3 pt-8 pb-10 text-center relative z-10">
+                <div class="px-3 pt-8 pb-5 text-center relative z-10">
                   <h4 class="text-sm uppercase text-gray-500 leading-tight">
                     Users win
                   </h4>
@@ -37,7 +36,6 @@
                   >
                     {{ this.userWin.length }}
                   </h3>
-                  <p class="text-xs text-red-500 leading-tight">▼ 42.8%</p>
                 </div>
               </div>
             </div>
@@ -47,16 +45,15 @@
               <div
                 class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden"
               >
-                <div class="px-3 pt-8 pb-10 text-center relative z-10">
+                <div class="px-3 pt-8 pb-5 text-center relative z-10">
                   <h4 class="text-sm uppercase text-gray-500 leading-tight">
-                    User play
+                    Users play
                   </h4>
                   <h3
                     class="text-3xl text-gray-700 font-semibold leading-tight my-3"
                   >
-                    200
+                    {{ users_play }}
                   </h3>
-                  <p class="text-xs text-green-500 leading-tight">▲ 8.2%</p>
                 </div>
               </div>
             </div>
@@ -107,12 +104,15 @@ export default {
   data() {
     return {
       userWin: [],
+      nb_users: 0,
+      users_play: 0,
       answers: [],
       winners: [],
     };
   },
   created() {
     this.getAllAnswers();
+    this.getAllUsers();
   },
   methods: {
     getAllAnswers() {
@@ -128,9 +128,32 @@ export default {
           console.error("There was an error!", error);
         })
         .then((data) => {
-          console.log(data[0]);
+          // console.log(data);
           this.userWin = data[0].usersWin;
-          console.log(this.userWin.length);
+        });
+    },
+    getAllUsers() {
+      const token = "Bearer " + localStorage.getItem("token");
+      const option = {
+        method: "GET",
+        headers: { "Content-Type": "application/json", Authorization: token },
+        credentials: "include",
+      };
+      fetch("http://localhost:9000/users/", option)
+        .then((response) => response.json())
+        .catch((error) => {
+          console.error("There was an error!", error);
+        })
+        .then((data) => {
+          // console.log(data);
+          this.nb_users = data.length;
+
+          for (let user = 0; user < data.length; user++) {
+            const element = data[user];
+            if (element.play == true) {
+              this.users_play++;
+            }
+          }
         });
     },
     draw() {
@@ -146,7 +169,7 @@ export default {
           console.error("There was an error!", error);
         })
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           this.winners = data;
         });
     },
