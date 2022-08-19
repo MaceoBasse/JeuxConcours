@@ -6,7 +6,7 @@
           <h1
             class="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4"
           >
-            Jouez et gagnez votre voyage en espagne
+            Jouez et gagnez votre voyage en Espagne
           </h1>
           <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
             Notre agence de voyages souhaite vous remercier de l'intérêt que
@@ -46,7 +46,7 @@
                 <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                 <path d="M22 4L12 14.01l-3-3"></path>
               </svg>
-              <span class="title-font font-medium">7 jours d'hotel</span>
+              <span class="title-font font-medium">7 jours d'hôtel</span>
             </div>
           </div>
           <div class="p-2 sm:w-1/2 w-full">
@@ -63,7 +63,7 @@
                 <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                 <path d="M22 4L12 14.01l-3-3"></path>
               </svg>
-              <span class="title-font font-medium">visite guidées</span>
+              <span class="title-font font-medium">visite guidée</span>
             </div>
           </div>
           <div class="p-2 sm:w-1/2 w-full">
@@ -100,7 +100,7 @@
                 <path d="M22 4L12 14.01l-3-3"></path>
               </svg>
               <span class="title-font font-medium"
-                >accès aux transport en commun</span
+                >accès aux transports en commun</span
               >
             </div>
           </div>
