@@ -16,8 +16,12 @@ function guardMyroute(to, from, next) {
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
+            console.log(data.play);
             if (data.message == "Invalid Token") {
                 router.push("/login");
+            }
+            if (data.play == true) {
+                router.push("/home");
             }
             next();
         });
