@@ -17,7 +17,7 @@ users = users['results']
 counter = 0
 for user in users:
     try:
-        #register
+        # register
         email = user['email']
         password = user['login']['password']
         firstname = user['name']['first']
@@ -38,7 +38,7 @@ for user in users:
             "role": role
         }
         x = requests.post(url, json=myobj)
-        #login
+        # login
         url = 'http://localhost:9000/users/login'
         myobj = {
             "email": email,
@@ -47,19 +47,19 @@ for user in users:
         x = requests.post(url, json=myobj)
 
         # play
-        # json_object = json.loads(x.text)
-        # token = 'Bearer ' + json_object['user']['token']
-        # url = "http://localhost:9000/game/answer"
-        # headers = {'Authorization': token}
-        # Response_1 = ["Barcelone", "Madrid", "Malaga"]
-        # Response_2 = ["FelipeVI", "FelipeV", "FelipeIII"]
-        # answer1 = random.choice(Response_1)
-        # answer2 = random.choice(Response_2)
-        # data = {
-        #     "answer1": answer1,
-        #     "answer2": answer2
-        # }
-        # response = requests.post(url, headers=headers, json=data)
+        json_object = json.loads(x.text)
+        token = 'Bearer ' + json_object['user']['token']
+        url = "http://localhost:9000/game/answer"
+        headers = {'Authorization': token}
+        Response_1 = ["Barcelone", "Madrid", "Malaga"]
+        Response_2 = ["FelipeVI", "FelipeV", "FelipeIII"]
+        answer1 = random.choice(Response_1)
+        answer2 = random.choice(Response_2)
+        data = {
+            "answer1": answer1,
+            "answer2": answer2
+        }
+        response = requests.post(url, headers=headers, json=data)
 
         counter = counter + 1
         print("I added " + str(counter)+" new users")
