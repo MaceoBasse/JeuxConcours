@@ -10,6 +10,7 @@ const schema = new Schema({
   city: { type: String, required: true },
   password: { type: String, required: true },
   role: { type: String, required: true },
+  play: { type: Boolean, default: false },
   createdDate: { type: Date, default: Date.now },
 });
 

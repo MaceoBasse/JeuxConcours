@@ -32,11 +32,13 @@ async function answer(id, req) {
     } if (req.answer2 == "FelipeIII") {
         await Answer.updateOne({ $push: { FelipeIII: [user._id] } },);
     }
-
+    // modify play:true
+    await User.updateOne({_id: user._id}, { $set: {play: true}});
     // puis si il a les bonnes réponse ajouter dans userwin
     if (req.answer1 == "Madrid" && req.answer2 == "FelipeVI") {
         await Answer.updateOne({ $push: { usersWin: [user._id] } },);
     }
+    //update user
     return "Message envoyé";
 }
 async function getAll() {
