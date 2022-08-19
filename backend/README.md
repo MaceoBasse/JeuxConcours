@@ -21,4 +21,4 @@ This is a backend template for Role based authentication which is created by usi
     1. clone the repo
     2. npm install
     3. run the app-> npm start
-    4. usepostman to test the app
+    4. use postman to test the app

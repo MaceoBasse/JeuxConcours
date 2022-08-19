@@ -18,6 +18,7 @@
               v-model="email"
               placeholder="Entrer votre adresse mail"
             />
+            <p class="text-red-600">{{ email_error }}</p>
           </label>
           <label for="password">
             <p class="font-medium text-slate-700 pb-2">Password</p>
@@ -29,6 +30,7 @@
               v-model="password"
               placeholder="Entrer votre mot de passe"
             />
+            <p class="text-red-600">{{ password_error }}</p>
           </label>
           <label for="prenom">
             <p class="font-medium text-slate-700 pb-2">Prenom</p>
@@ -40,6 +42,7 @@
               v-model="firstName"
               placeholder="Entrer votre prenom"
             />
+            <p class="text-red-600">{{ firstName_error }}</p>
           </label>
           <label for="nom">
             <p class="font-medium text-slate-700 pb-2">Nom</p>
@@ -51,17 +54,19 @@
               v-model="lastName"
               placeholder="Entrer votre nom"
             />
+            <p class="text-red-600">{{ lastName_error }}</p>
           </label>
           <label for="number">
             <p class="font-medium text-slate-700 pb-2">Numéro</p>
             <input
               id="number"
               name="number"
-              type="number"
+              type="text"
               class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
               v-model="number"
               placeholder="Entrer votre numéro"
             />
+            <p class="text-red-600">{{ number_error }}</p>
           </label>
           <label for="dateofbirth">
             <p class="font-medium text-slate-700 pb-2">Date de naissance</p>
@@ -73,6 +78,7 @@
               v-model="dateofbirth"
               placeholder="Entrer votre date de naissance"
             />
+            <p class="text-red-600">{{ dateofbirth_error }}</p>
           </label>
           <label for="city">
             <p class="font-medium text-slate-700 pb-2">Ville</p>
@@ -84,6 +90,7 @@
               v-model="city"
               placeholder="Entrer votre ville"
             />
+            <p class="text-red-600">{{ city_error }}</p>
           </label>
           <p class="text-red-600">{{ error }}</p>
           <button
@@ -135,22 +142,95 @@
 </template>
 
 <script>
+import validator from "validator";
+import moment from "moment";
 export default {
   data() {
     return {
       email: "",
+      email_error: "",
       password: "",
+      password_error: "",
       firstName: "",
+      firstName_error: "",
       lastName: "",
+      lastName_error: "",
       number: "",
+      number_error: "",
       dateofbirth: "",
+      dateofbirth_error: "",
       city: "",
+      city_error: "",
       role: "User",
       error: "",
     };
   },
   methods: {
+    signUpValidate() {
+      let { email, password, firstName, lastName, number, dateofbirth, city } =
+        this;
+
+      //reset error
+      this.email_error = "";
+      this.password_error = "";
+      this.firstName_error = "";
+      this.lastName_error = "";
+      this.number_error = "";
+      this.dateofbirth_error = "";
+      this.city_error = "";
+      this.error = ""
+
+      if (!validator.isEmail(email)) {
+        this.email_error = "L'email n'est pas valide";
+        this.email = "";
+        return false;
+      }
+      if (!validator.isStrongPassword(password)) {
+        this.password_error =
+          "Le mot de passe doit contenir 8 caractères, 1 majuscule,1 minuscule et 1 caracatére spéciale";
+        this.password = "";
+        return false;
+      }
+
+      if (validator.isEmpty(firstName)) {
+        this.firstName_error = "Il faut ecrire un prenom";
+        this.firstName = "";
+        return false;
+      }
+
+      if (validator.isEmpty(lastName)) {
+        this.lastName_error = "Il faut ecrire un nom";
+        this.lastName = "";
+        return false;
+      }
+      var frenchphone =
+        /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/;
+      if (!frenchphone.test(number)) {
+        console.log(number);
+        this.number_error = "Il faut ecrire un numéro français valide";
+        this.number = "";
+        return false;
+      }
+      dateofbirth = moment().format("D/M/Y");
+      if (validator.isDate(dateofbirth)) {
+        console.log(dateofbirth);
+        this.dateofbirth_error = "Il faut ecrire une date de naissance valide";
+        this.dateofbirth = "";
+        return false;
+      }
+
+      if (validator.isEmpty(city)) {
+        this.city_error = "Il faut ecrire une ville";
+        this.city = "";
+        return false;
+      }
+
+      return true;
+    },
     submit() {
+      if (!this.signUpValidate()) {
+        return false;
+      }
       const option = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -174,8 +254,8 @@ export default {
         .then((data) => {
           console.log(data.message);
           if (data.message == "User register in successfully") {
-            localStorage.setItem('token', data.user['token']);
-            this.$router.push("home");
+            localStorage.setItem("token", data.user["token"]);
+            this.$router.push("/");
           } else {
             this.error = data.message;
           }
