@@ -5,6 +5,7 @@
     >
       <a
         class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+        href="/"
       >
         <svg width="32" height="32" viewBox="0 0 24 24">
           <path
@@ -17,10 +18,10 @@
       <nav
         class="md:ml-auto flex flex-wrap items-center text-base justify-center"
       >
-        <a class="mr-5 hover:text-gray-900">Destinations</a>
-        <a class="mr-5 hover:text-gray-900">Séjours</a>
-        <a class="mr-5 hover:text-gray-900">Circuits</a>
-        <a class="mr-5 hover:text-gray-900">Croisières</a>
+        <a class="mr-5 hover:text-gray-900" href="/">Destinations</a>
+        <a class="mr-5 hover:text-gray-900" href="/">Séjours</a>
+        <a class="mr-5 hover:text-gray-900" href="/">Circuits</a>
+        <a class="mr-5 hover:text-gray-900" href="/">Croisières</a>
       </nav>
 
       <button

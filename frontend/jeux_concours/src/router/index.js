@@ -17,7 +17,7 @@ function guardMyroute(to, from, next) {
         .then((data) => {
             console.log(data);
             if (data.message == "Invalid Token") {
-                router.push("/");
+                router.push("/login");
             }
             next();
         });
@@ -33,7 +33,7 @@ function isAdmin(to, from, next) {
         .then((response) => response.json())
         .then((data) => {
             if (data.message == "Invalid Token" && data.role == "User") {
-                router.push("/");
+                router.push("/home");
             }
             next();
         });
