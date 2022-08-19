@@ -9,8 +9,9 @@
             Jouez et gagnez votre voyage en espagne
           </h1>
           <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
-            Notre agence de voyage souhaite vous remerciez de l'intéret que vous portez à notre site.
-            C'est pour cela que nous mettons en jeu 5 voyage d'une semaine afin que vous puissiez decouvrir l'espagne.
+            Notre agence de voyages souhaite vous remercier de l'intérêt que
+            vous portez à notre site. C'est pour cela que nous mettons en jeu 5
+            voyages d'une semaine afin que vous puissiez découvrir l'Espagne.
           </p>
         </div>
         <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
@@ -28,9 +29,7 @@
                 <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                 <path d="M22 4L12 14.01l-3-3"></path>
               </svg>
-              <span class="title-font font-medium"
-                >Vol aller/retour</span
-              >
+              <span class="title-font font-medium">Vol aller/retour</span>
             </div>
           </div>
           <div class="p-2 sm:w-1/2 w-full">
@@ -47,9 +46,7 @@
                 <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                 <path d="M22 4L12 14.01l-3-3"></path>
               </svg>
-              <span class="title-font font-medium"
-                >7 jours d'hotel</span
-              >
+              <span class="title-font font-medium">7 jours d'hotel</span>
             </div>
           </div>
           <div class="p-2 sm:w-1/2 w-full">
@@ -102,7 +99,9 @@
                 <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                 <path d="M22 4L12 14.01l-3-3"></path>
               </svg>
-              <span class="title-font font-medium">accès aux transport en commun</span>
+              <span class="title-font font-medium"
+                >accès aux transport en commun</span
+              >
             </div>
           </div>
           <div class="p-2 sm:w-1/2 w-full">
@@ -119,16 +118,19 @@
                 <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                 <path d="M22 4L12 14.01l-3-3"></path>
               </svg>
-              <span class="title-font font-medium">accès gratuit au monument</span>
+              <span class="title-font font-medium"
+                >accès gratuit au monument</span
+              >
             </div>
           </div>
         </div>
-         <router-link to="/game"><button
-          class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+        <router-link to="/game"
+          ><button
+            class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+          >
+            Tentez votre chance
+          </button></router-link
         >
-          Tentez votre chance
-        </button></router-link>
-        
       </div>
     </section>
   </div>
