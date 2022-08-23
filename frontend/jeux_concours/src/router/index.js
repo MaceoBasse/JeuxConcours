@@ -15,8 +15,7 @@ function guardMyroute(to, from, next) {
     fetch("http://localhost:9000/users/current", option)
         .then((response) => response.json())
         .then((data) => {
-            console.log(data);
-            console.log(data.play);
+            
             if (data.message == "Invalid Token") {
                 router.push("/login");
             }
