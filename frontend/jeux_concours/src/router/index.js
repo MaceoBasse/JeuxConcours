@@ -22,6 +22,7 @@ function guardMyroute(to, from, next) {
                 }
                 if (data.play == true) {
                     window.alert('Vous avez déjà joué si vous avez gagné vous recevrez un email')
+                    router.push("/");
                 }
                 next();
             });
