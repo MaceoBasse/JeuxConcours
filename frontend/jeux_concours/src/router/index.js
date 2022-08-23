@@ -6,24 +6,29 @@ import Game from '../components/MyGame.vue'
 import Admin from '../components/MyAdmin.vue'
 
 function guardMyroute(to, from, next) {
-    const token = "Bearer " + localStorage.getItem("token");
-    const option = {
-        method: "GET",
-        headers: { "Content-Type": "application/json", Authorization: token },
-        credentials: "include",
-    };
-    fetch("http://localhost:9000/users/current", option)
-        .then((response) => response.json())
-        .then((data) => {
+    if (localStorage.getItem("token")) {
+        const token = "Bearer " + localStorage.getItem("token");
+        const option = {
+            method: "GET",
+            headers: { "Content-Type": "application/json", Authorization: token },
+            credentials: "include",
+        };
+        fetch("http://localhost:9000/users/current", option)
+            .then((response) => response.json())
+            .then((data) => {
 
-            if (data.message == "Invalid Token") {
-                router.push("/login");
-            }
-            if (data.play == true) {
-                router.push("/home");
-            }
-            next();
-        });
+                if (data.message == "Invalid Token") {
+                    router.push("/login");
+                }
+                if (data.play == true) {
+                    window.alert('Vous avez déjà joué si vous avez gagné vous recevrez un email')
+                }
+                next();
+            });
+    } else {
+        router.push("/login");
+    }
+
 }
 function isAdmin(to, from, next) {
     const token = "Bearer " + localStorage.getItem("token");

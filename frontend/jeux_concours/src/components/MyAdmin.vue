@@ -128,7 +128,7 @@ export default {
           console.error("There was an error!", error);
         })
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           this.userWin = data[0].usersWin;
         });
     },
