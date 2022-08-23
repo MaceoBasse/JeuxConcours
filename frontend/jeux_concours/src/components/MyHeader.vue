@@ -23,9 +23,15 @@
         <a class="mr-5 hover:text-gray-900" href="/">Circuits</a>
         <a class="mr-5 hover:text-gray-900" href="/">Croisières</a>
       </nav>
-
       <button
         class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-indigo-500 hover:text-white rounded text-base mt-4 md:mt-0"
+        v-if="token"
+      >
+        <a @click="logout()">Logout</a>
+      </button>
+      <button
+        class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-indigo-500 hover:text-white rounded text-base mt-4 md:mt-0"
+        v-else
       >
         <router-link to="/login">Login</router-link>
       </button>
@@ -34,7 +40,26 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      token: "",
+    };
+  },
+  watch: {
+    $route() {
+      this.token = localStorage.getItem("token");
+    },
+  },
+  methods: {
+    logout() {
+      if (this.token) {
+        localStorage.removeItem("token");
+        this.$router.push({ path: "/" });
+      }
+    },
+  },
+};
 </script>
 
 <style></style>
