@@ -128,7 +128,7 @@ export default {
           console.error("There was an error!", error);
         })
         .then((data) => {
-          // console.log(data);
+          console.log(data);
           this.userWin = data[0].usersWin;
         });
     },
@@ -157,6 +157,12 @@ export default {
         });
     },
     draw() {
+      if (this.userWin.length < 5) {
+        window.alert(
+          "il faut minimum 5 personnes pour lancer le tirage au sort"
+        );
+        return false;
+      }
       const token = "Bearer " + localStorage.getItem("token");
       const option = {
         method: "GET",

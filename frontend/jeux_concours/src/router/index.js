@@ -15,7 +15,7 @@ function guardMyroute(to, from, next) {
     fetch("http://localhost:9000/users/current", option)
         .then((response) => response.json())
         .then((data) => {
-            
+
             if (data.message == "Invalid Token") {
                 router.push("/login");
             }
@@ -35,8 +35,8 @@ function isAdmin(to, from, next) {
     fetch("http://localhost:9000/users/current", option)
         .then((response) => response.json())
         .then((data) => {
-            if (data.message == "Invalid Token" && data.role == "User") {
-                router.push("/home");
+            if (data.message == "Invalid Token" || data.role == "User") {
+                router.push("/");
             }
             next();
         });
